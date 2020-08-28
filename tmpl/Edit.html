@@ -1,0 +1,41 @@
+{{define "Edit"}}
+
+   {{template "_head"}}
+
+      {{template "_menu"}}
+
+   <div class="container">
+      <body>
+         <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+               <h1 class="display-5">Editar Cliente</h1>
+               <p class="lead">Insira os dados para atualizar</p>
+            </div>
+         </div>
+         <form method="POST" action="update">
+            <input type="hidden" name="id" value="{{.Id}}">
+            <div class="row">
+               <div class="col-sm-8">
+                  <div class="form-group"> <label for="nome">Nome:</label> <input type="text" name="nome" class="form-control" value="{{.Nome}}"> </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-8">
+                  <div class="form-group"> <label for="cpfcnpj">Cpf/Cnpj:</label> <input type="text" name="cpfcnpj" class="form-control cpf-mask" placeholder="Ex.: 000.000.000-00" data-mask="00/00/0000" maxlength="15" autocomplete="off" value="{{.CpfCnpj}}"> </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-5">
+                  <div class="form-group"> <label for="telefone">Telefone:</label> <input type="text" name="telefone" class="form-control phone-ddd-mask" placeholder="Ex.: (00) 0000-0000" maxlength="12" value="{{.Telefone}}"> </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-6">
+                  <div class="form-group"> <label for="email">Email:</label> <input type="text" name="email" class="form-control" value="{{.Email}}"> </div>
+               </div>
+            </div>
+            <button type="submit" value="salvar" class="btn btn-success">Atualizar</button> <a class="btn btn-info" href="/">Voltar</a> 
+         </form>
+      </body>
+</html>
+{{end}}

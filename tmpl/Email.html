@@ -1,0 +1,35 @@
+{{define "Email"}}
+
+   {{template "_head"}}
+
+      {{template "_menu"}}
+
+   <div class="container">
+      <body>
+         <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+               <h1 class="display-5">Email</h1>
+               <p class="lead">Preencha os campos abaixo</p>
+            </div>
+         </div>
+         <form action="sendEmail" method="post">
+            <div>
+               <label for="mail">E-mail:</label>
+               <input type="email" id="mail" />
+            </div>
+            <div>
+               <label for="assunto" >Assunto:</label>
+               <input type="text" id="assunto" />
+            </div>
+            
+            <div>
+               <label for="msg">Mensagem:</label>
+               <textarea id="msg"></textarea>
+            </div>
+            <div class="button">
+            <td><a href="/enviaEmail" class="btn btn-info">Enviar sua mensagem</td>              
+            </div>
+         </form>
+      </body>
+</html>
+{{end}}

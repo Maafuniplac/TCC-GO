@@ -1,0 +1,44 @@
+{{define "N_Car"}}
+
+   {{template "_head"}}
+
+      {{template "_menu"}}
+
+   <div class="container">
+      <body>
+       
+         <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+               <h1 class="display-5">Novo Veículo</h1>
+               <p class="lead">Insira os detalhes</p>
+            </div>
+         </div>
+
+         <form method="POST" action="inserirVeiculo">
+            
+            <div class="row">
+               <div class="col-sm-8">
+                  <div class="form-group"> <label for="modelo">Modelo:</label> <input type="text" name="modelo" class="form-control"> </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-2">
+                  <div class="form-group"> <label for="placa">Placa:</label> <input type="text" name="placa" class="form-control"> </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-3">
+                  <div class="form-group"> <label for="renavam">Renavam:</label> <input type="text" name="renavam" class="form-control"> </div>
+               </div>
+            </div>  
+            <div class="row">
+               <div class="col-sm-3">
+                  <div class="form-group"> <label for="idcliente">IdCliente:</label> <input type="text" name="idcliente" class="form-control"> </div>
+               </div>
+            </div>          
+            <button type="submit" value="salvar" class="btn btn-success">Salvar</button> <a class="btn btn-info" href="/">Voltar</a> 
+             
+         </form>         
+      </body>
+</html>
+{{end}}
