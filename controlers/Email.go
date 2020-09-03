@@ -10,7 +10,7 @@ import (
 func Email(w http.ResponseWriter, r *http.Request) {
 	idDoCliente := r.URL.Query().Get("idcliente")
 	temp.ExecuteTemplate(w, "Email", idDoCliente)
-
+	log.Println("idDoCliente: ", idDoCliente)
 	http.Redirect(w, r, "/", 301)
 }
 
@@ -23,7 +23,7 @@ func SendEmail(w http.ResponseWriter, r *http.Request) {
 	// Receiver email address.
 	to := []string{
 		"marco@uniplaclages.edu.br",
-		"tt.sartor@gmail",
+		"tt.sartor@gmail.com",
 	}
 
 	// smtp server configuration.

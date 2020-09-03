@@ -34,8 +34,18 @@
                   <div class="form-group"> <label for="email">Email:</label> <input type="text" name="email" class="form-control" value="{{.Email}}"> </div>
                </div>
             </div>
-            <button type="submit" value="salvar" class="btn btn-success">Atualizar</button> <a class="btn btn-info" href="/">Voltar</a> 
+            <button onclick="onSave('{{.Id}}')" class="btn btn-danger">Salvar</button> <a class="btn btn-info" href="/">Voltar</a>                         
          </form>
       </body>
+
+   <script>
+      function onSave(id){
+         let resposta = confirm("Tem certeza que deseja editar este cliente ?" )
+         if (resposta){
+            window.location = "/update" + id
+         }
+      }
+   </script>
+
 </html>
 {{end}}

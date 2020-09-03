@@ -21,7 +21,6 @@ func CarregaRotas() {
 	http.HandleFunc("/editar_vei", controlers.Edit_Car)
 	http.HandleFunc("/atualizaVeic", controlers.Update_Car)
 	http.HandleFunc("/excluiVeic", controlers.Delete_Car)
-
 	http.HandleFunc("/email", controlers.Email)
 	http.HandleFunc("/enviaEmail", controlers.SendEmail)
 }

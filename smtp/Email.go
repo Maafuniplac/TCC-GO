@@ -14,7 +14,7 @@ func SendEmail() {
 	// Receiver email address.
 	to := []string{
 		"marco@uniplaclages.edu.br",
-		"tt.sartor@gmail",
+		"tt.sartor@gmail.com",
 	}
 
 	log.Println(from, password)

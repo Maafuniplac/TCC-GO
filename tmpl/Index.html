@@ -26,9 +26,9 @@
                         <td>{{.Nome}}</td>
                         <td>{{.CpfCnpj}}</td>
                         <td>{{.Telefone}}</td>
-                        <td>{{.Email}}</td> 
-                        <td><a href="email?idcliente={{.Id}}" class="btn btn-info">Email</td>  
+                        <td>{{.Email}}</td>                           
                         <td><a href="veic?idcliente={{.Id}}" class="btn btn-info">Veiculos</td>
+                        <td><a href="email?idcliente={{.Id}}" class="btn btn-info">Email</td>
                         <td><a href="edit?idcliente={{.Id}}" class="btn btn-info">Editar Cliente</td>                   
                         <td><button onclick="onDelete('{{.Id}}')" class="btn btn-danger">Deletar</td>
                      </tr>

@@ -35,10 +35,19 @@
                <div class="col-sm-3">
                   <div class="form-group"> <label for="idcliente">IdCliente:</label> <input type="text" name="idcliente" class="form-control"> </div>
                </div>
-            </div>          
-            <button type="submit" value="salvar" class="btn btn-success">Salvar</button> <a class="btn btn-info" href="/">Voltar</a> 
-             
+            </div>
+            <button onclick="onSave('idcliente')" class="btn btn-danger">Salvar</button> <a class="btn btn-info" href="/">Voltar</a>             
          </form>         
       </body>
+
+   <script>
+      function onSave(id){
+         let resposta = confirm("Tem certeza que deseja salvar este veiculo ?" )
+         if (resposta){
+            window.location = "/inserirVeiculo"
+         }
+      }
+   </script>
+
 </html>
 {{end}}

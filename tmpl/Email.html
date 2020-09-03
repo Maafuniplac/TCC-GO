@@ -4,32 +4,39 @@
 
       {{template "_menu"}}
 
-   <div class="container">
-      <body>
+   <body>
+      <div class="container">
+      
          <div class="jumbotron jumbotron-fluid">
             <div class="container">
                <h1 class="display-5">Email</h1>
                <p class="lead">Preencha os campos abaixo</p>
             </div>
          </div>
-         <form action="sendEmail" method="post">
-            <div>
-               <label for="mail">E-mail:</label>
-               <input type="email" id="mail" />
+
+         <form method="POST" action="sendEmail">
+            
+            <div class="row">
+               <div class="col-sm-8">
+                  <div class="form-group"> <label for="mail">Email Destinatário:</label> <input type="email" name="mail" class="form-control"> </div>
+               </div>
             </div>
-            <div>
-               <label for="assunto" >Assunto:</label>
-               <input type="text" id="assunto" />
+            <div class="row">
+               <div class="col-sm-2">
+                  <div class="form-group"> <label for="assunto">Assunto:</label> <input type="text" name="assunto" class="form-control"> </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-3">
+                  <div class="form-group"> <label for="msg">Mensagem:</label> <textarea id="msg" name="msg" class="form-control" > </div>
+               </div>
+            </div> 
+            <div class="button">         
+               <button><a href="/enviaEmail" type="submit" class="btn btn-success">Enviar Email</button> <a class="btn btn-info" href="/">Voltar</a> 
             </div>
             
-            <div>
-               <label for="msg">Mensagem:</label>
-               <textarea id="msg"></textarea>
-            </div>
-            <div class="button">
-            <td><a href="/enviaEmail" class="btn btn-info">Enviar sua mensagem</td>              
-            </div>
-         </form>
+         </form> 
+      </div>
       </body>
 </html>
 {{end}}
