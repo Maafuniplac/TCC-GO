@@ -1,47 +1,33 @@
 package controlers
 
 import (
-	"fmt"
 	"log"
 	"net/http"
-	"net/smtp"
+
+	"github.com/models"
 )
 
+//Aqui ele abre o formulario de email e busca os dados do cliente e veiculo pra exibir na tela
 func Email(w http.ResponseWriter, r *http.Request) {
-	idDoCliente := r.URL.Query().Get("idcliente")
-	temp.ExecuteTemplate(w, "Email", idDoCliente)
-	log.Println("idDoCliente: ", idDoCliente)
+	idcliente := r.URL.Query().Get("idcliente")
+	buscaEmail := models.BuscaInfoEmail(idcliente)
+	log.Println("idcliente: ", idcliente)
+	temp.ExecuteTemplate(w, "Email", buscaEmail)
 	http.Redirect(w, r, "/", 301)
 }
 
+//Aqui busca as informaçoes do formulario de email para montar o email
 func SendEmail(w http.ResponseWriter, r *http.Request) {
-	// Sender data.
-	from := "marco.antonio.alvesf@gmail.com"
-	password := "maafdrums1"
+	if r.Method == "POST" {
+		email := r.FormValue("email")
+		msg := r.FormValue("msg")
 
-	log.Println(from, password)
-	// Receiver email address.
-	to := []string{
-		"marco@uniplaclages.edu.br",
-		"tt.sartor@gmail.com",
+		message := []byte(msg)
+
+		log.Println("SendEmail: ", message)
+
+		models.EnviaEmail(email, message)
+		http.Redirect(w, r, "/", 301)
 	}
 
-	// smtp server configuration.
-	smtpHost := "smtp.gmail.com"
-	smtpPort := "587"
-
-	// Message.
-	message := []byte("Teste email enviado via aplicação GOLANG.")
-
-	// Authentication.
-	auth := smtp.PlainAuth("", from, password, smtpHost)
-
-	// Sending email.
-	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, message)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("Email Enviado Corretamente!")
-	http.Redirect(w, r, "/", 301)
 }
