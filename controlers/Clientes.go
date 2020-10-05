@@ -9,10 +9,9 @@ import (
 	"github.com/models"
 )
 
-// Variavel temp busca todos os arquivos html dentro da pasta tmpl
+//....
 var temp = template.Must(template.ParseGlob("tmpl/*.html"))
-
-// funcao para abrir tela de index, com chamando a função de buscar e mostrar todos os clientes
+//....
 func Index(w http.ResponseWriter, r *http.Request) {
 	todosOsClientes := models.BuscaTodosOsClientes()
 	temp.ExecuteTemplate(w, "Index", todosOsClientes)

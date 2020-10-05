@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/smtp"
+	"time"
 
 	"github.com/db"
 )
@@ -37,12 +38,11 @@ func BuscaInfoEmail(idCliente string) Cliente {
 }
 
 //Funcao para enviar o email
-func EnviaEmail(email string, msg []byte) {
+func EnviaEmail(email string, msg []byte, nome string) {
 	// Sender data.
 	from := "marco.antonio.alvesf@gmail.com"
 	password := "maafdrums1"
 
-	log.Println("log 1: ", email, msg)
 	// Receiver email address.
 	to := []string{
 		email,
@@ -54,19 +54,41 @@ func EnviaEmail(email string, msg []byte) {
 
 	// Message.
 	message := []byte(msg)
-
-	log.Println(to, message)
+	cliente := nome
+	//log.Println(to, message)
 	// Authentication.
 	auth := smtp.PlainAuth("", from, password, smtpHost)
 
-	log.Println("auth ", auth)
+	//log.Println("auth ", auth)
 	// Sending email.
 	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, message)
 
-	log.Println(smtpHost+":"+smtpPort, auth, from, to, message)
+	//log.Println(smtpHost+":"+smtpPort, auth, from, to, message)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Erro no envio do email: ", err)
 		return
 	}
+
+	//datetime.Format(("02/Jan/2006 15:04:05"))
+	//log.Println("datetime: ", datetime)
+
+	InsereEmail(msg, cliente)
+
 	fmt.Println("Email Enviado Corretamente!")
+}
+
+//Inserir no banco
+func InsereEmail(mensagem []byte, nome string) {
+	db := db.ConectaComDB()
+
+	datetime := time.Now().UTC()
+
+	insereDadosDb, err := db.Prepare("INSERT INTO EMAIL(MENSAGEM, CLIENTE, DATA) VALUES($1, $2, $3)")
+	log.Println("insereDadosDb: ", insereDadosDb)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	insereDadosDb.Exec(mensagem, nome, datetime)
+	defer db.Close()
 }

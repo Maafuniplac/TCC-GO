@@ -19,15 +19,13 @@ func Email(w http.ResponseWriter, r *http.Request) {
 //Aqui busca as informaçoes do formulario de email para montar o email
 func SendEmail(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
+		nome := r.FormValue("nome")
 		email := r.FormValue("email")
 		msg := r.FormValue("msg")
 
 		message := []byte(msg)
 
-		log.Println("SendEmail: ", message)
-
-		models.EnviaEmail(email, message)
+		models.EnviaEmail(email, message, nome)
 		http.Redirect(w, r, "/", 301)
 	}
-
 }
